@@ -175,7 +175,7 @@ width:100%!important;
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Vehículos</h4>
+                <h5 class="modal-title" style="color:dimgray;">Vehículos ({{$entidadesComerciale->nombre}})</h5>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
