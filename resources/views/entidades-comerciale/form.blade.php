@@ -271,8 +271,7 @@ width:100%!important;
 
     $('.livesearch').on('change',function(e)
     {
-        console.log(automoviles.includes(automovil))
-        var automovil=$('#selectvehiculo').val();
+        var automovil=parseInt($('#selectvehiculo').val(),10);
 
         if(automoviles.includes(automovil))
         {
