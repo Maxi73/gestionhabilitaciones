@@ -106,20 +106,24 @@ class EntidadesComercialeController extends Controller
         $entidadesComerciale = EntidadesComerciale::find($id);
         $vehiculos = Vehiculo::all();
         $vehiculosAsociados = Vehiculo::select("id","marca","modelo","dominio")->where("entidadComercial_id",$id)->get();
-      if($entidadesComerciale->habilitacionComercial_id){
-          $habilitacionComercial = HabilitacionesComerciale::find($entidadesComerciale->habilitacionComercial_id);
-      }else{
-          $habilitacionComercial = new HabilitacionesComerciale();
-      }
-
         $personas = Persona::all();
+        $categorias = CategoriasComerciale::all();
 
-            $categorias = CategoriasComerciale::all();
+        if($entidadesComerciale->habilitacionComercial_id)
+        {
+            $habilitacionComercial = HabilitacionesComerciale::find($entidadesComerciale->habilitacionComercial_id);
+        }
+        else
+        {
+            $habilitacionComercial = new HabilitacionesComerciale();
+        }
 
-
-        if($entidadesComerciale->licenciaReba_id){
+        if($entidadesComerciale->licenciaReba_id)
+        {
             $licenciasReba = LicenciasReba::find($entidadesComerciale->licenciaReba_id);
-        }else{
+        }
+        else
+        {
             $licenciasReba = new LicenciasReba();
         }
 
