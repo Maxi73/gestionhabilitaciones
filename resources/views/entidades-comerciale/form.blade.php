@@ -4,59 +4,36 @@
 width:100%!important;
 }
 </style>
-<div class="box box-info padding-1">
-    <div class="box-body">
+<div class="container-fluid">
         <div class="row" >
-            <div class="form-group col-3">
-                {{ Form::label('tipo') }}
-                <select id="tipo" name="tipo" class="form-control" value="{{$entidadesComerciale->tipo}}" onchange="mostrar(this.value)">
-                    <option value="#">Seleccione una opcion</option>
-                    <option value="comercio">COMERCIO</option>
-                    <option value="remiseria">REMISERIA</option>
-                    <option value="taxi">TAXI</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="row" >
-
             <div class="form-group col-3" id="nombre" style="display: none;">
                 {{ Form::label('Nombre') }}
                 {{ Form::text('nombre', $entidadesComerciale->nombre, ['class' => 'form-control' . ($errors->has('nombre') ? ' is-invalid' : ''), 'placeholder' => 'Nombre']) }}
             </div>
-
             <div class="form-group col-3" id="legajo" style="display: none;">
                 {{ Form::label('Legajo') }}
                 {{ Form::text('legajo', $entidadesComerciale->legajo, ['class' => 'form-control' . ($errors->has('legajo') ? ' is-invalid' : ''), 'placeholder' => 'Legajo']) }}
             </div>
-
             <div class="form-group col-3" id="expediente" style="display: none;">
                 {{ Form::label('Expediente') }}
                 {{ Form::text('expediente', $entidadesComerciale->expediente, ['class' => 'form-control' . ($errors->has('expediente') ? ' is-invalid' : ''), 'placeholder' => 'Expediente']) }}
             </div>
-
             <div class="form-group col-3" id="rubro" style="display: none;">
                 {{ Form::label('Rubro') }}
                 {{ Form::text('rubro', $entidadesComerciale->rubro, ['class' => 'form-control' . ($errors->has('rubro') ? ' is-invalid' : ''), 'placeholder' => 'Rubro']) }}
             </div>
-
             <div class="form-group col-3" id="domicilio" style="display: none;">
                 {{ Form::label('Domicilio') }}
                 {{ Form::text('domicilio', $entidadesComerciale->domicilio, ['class' => 'form-control' . ($errors->has('domicilio') ? ' is-invalid' : ''), 'placeholder' => 'Domicilio']) }}
             </div>
-
             <div class="form-group col-3" id="parada" style="display: none;">
                 {{ Form::label('parada') }}
                 {{ Form::text('parada', $entidadesComerciale->parada, ['class' => 'form-control' . ($errors->has('parada') ? ' is-invalid' : ''), 'placeholder' => 'Parada']) }}
             </div>
-
-
             <div class="form-group col-2" id="partida" style="display: none;">
                 {{ Form::label('Partida') }}
                 {{ Form::text('partida', $entidadesComerciale->partida, ['class' => 'form-control' . ($errors->has('partida') ? ' is-invalid' : ''), 'placeholder' => 'Partida']) }}
             </div>
-
-
             <div class="form-group col-2" id="tipoHab" style="display: none;">
                 {{ Form::label('Tipo Hab.') }}
                 <select class="form-control" name="tipoHab" id="tipoHab">
@@ -65,8 +42,6 @@ width:100%!important;
                     <option value="0"> Transitorio </option>
                 </select>
             </div>
-
-
             <div class="form-group col-3" id="chofer" style="display: none;">
                 {{ Form::label('Chofer') }}
                 <select class="form-control" name="chofer_id" id="chofer_id">
@@ -75,8 +50,7 @@ width:100%!important;
                     @endforeach
                 </select>
             </div>
-
-            <div class="form-group col-2" id="categoriasComerciales" style="display: none;">
+            <div class="form-button col-2" id="categoriasComerciales" style="display: none;">
                 {{ Form::label('Cat. Comercial') }}
                 <select class="form-control" name="categoriasComerciales" id="categoriasComerciales">
                         @foreach($categorias as $cc)
@@ -84,32 +58,36 @@ width:100%!important;
                         @endforeach
                 </select>
             </div>
-
-
+            <div class="form-button col-sm-2">
+                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalVehiculo" style="margin-top: 35px;">Vehículo/s</button>
+            </div>
+            <div class="form-button col-sm-2">
+                <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#modalTitular" style="margin-top: 35px;">Titular/es</button>
+            </div>
+            <div class="form-button col-sm-2">
+                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalReba" style="margin-top: 35px;color:white !important;">Licencia REBA</button>
+            </div>
+            <div class="form-button col-sm-2">
+                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalComercial" style="margin-top: 35px;">Habilitación Com.</button>
+            </div>
+            <div class="col-sm-3">
+                <label class="form-label" for="tipo" style="color:dimgray;">Tipo de entidad comercial</label>
+                <select id="tipo" name="tipo" class="form-control" value="" onchange="mostrar(this.value)" style="color:dimgray;">
+                    <option value="#">Seleccionar</option>
+                    <option value="comercio">Comercio</option>
+                    <option value="remiseria">Remiseria</option>
+                    <option value="taxi">Taxi</option>
+                </select>
+            </div>
+        </div><hr>
+        <div class="row">
+            <div class="form-button col-sm-12">
+                 <button type="submit" class="btn btn-success btn-sm" style="float:right;"><i class="fa fa-save"></i> Guardar</button>
+            </div>
         </div>
-
-
     </div>
 </div>
 
-    <div class="box-footer mt20">
-        <button type="submit" class="btn btn-primary">Guardar</button>
-  <!--if($entidadesComerciale->id && $entidadesComerciale->tipo == 'comercio')-->
-            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalTitular">Cargar Titular/es</button>
-            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalReba">Licencia REBA</button>
-            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalComercial">Habilitacion Com.</button>
-        <!-- endif
-        if($entidadesComerciale->id && ($entidadesComerciale->tipo == 'taxi' || $entidadesComerciale->tipo == 'remiseria'))-->
-            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalVehiculo">Cargar Vehiculo</button>
-        <!--endif-->
-
-    </div>
-    </div>
-
-</div>
-
-
-<!-- Modals -->
 <div id="modalReba" class="modal" role="dialog">
     <div class="modal-dialog modal-lg">
 
@@ -185,7 +163,7 @@ width:100%!important;
                         <select class="livesearch form-control" id="selectvehiculo" name="selectvehiculo" required></select>
                     </div>
                     <div class="col-sm-1 col-md-1 col-lg-1" style="margin-top:10px;">
-                        <a href="javascript:void(0)" data-toggle="modal" data-target="#modalAgregarVehiculo" style="margin-left:15px;"><i class="fa fa-plus" style="color: green" title="Agregar nuevo vehículo"></i></a>
+                        <a href="{{ route('vehiculo.create') }}" style="margin-left:15px;"><i class="fa fa-plus" style="color: green" title="Agregar nuevo vehículo"></i></a>
                     </div>
                 </div>
                 <!--Tabla-->
@@ -232,6 +210,9 @@ width:100%!important;
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
 <script type="text/javascript">
 {
+    //Asigno valor a select Tipo
+    $("#tipo").val('<?php echo $entidadesComerciale->tipo; ?>');
+
     var automoviles=[];
     var data = '<?php echo json_encode($vehiculosAsociados); ?>';
  
@@ -281,15 +262,13 @@ width:100%!important;
         else
         {
             automoviles.push(automovil);
-            console.log("Vehiculos: "+automoviles);
             //Armo el tr
             var string=$('#selectvehiculo').text().split(" ");
             var tr="<tr id="+$('#selectvehiculo').val()+"><td>"+string[0]+"</td><td>"+string[1]+"</td><td>"+string[2]+"</td><td><a href='#' onclick='deleteTr("+$('#selectvehiculo').val()+",false)'><i class='fa fa-fw fa-trash' style='color:red' title='Quitar de la selección'></i></a></td></tr>";
             $("#tabla_autos tr:last").after(tr); 
             $('#selectvehiculo').text("");
             $('#selectvehiculo').focus();
-        }
-        
+        }  
     });
 
     function actualizar()
@@ -306,8 +285,6 @@ width:100%!important;
         }
         else
         {
-            console.log("Automoviles: "+automoviles);
-            console.log("Entidad: "+$("#id_entidad").val());
             $.ajax(
             {
                 url: "http://localhost/www/gestionhabilitaciones/public/updateentidadvehiculo",
@@ -326,7 +303,6 @@ width:100%!important;
                     toastr.success(result.success);
                     $("#modalVehiculo").modal('toggle');
                     setInterval("actualizar()",3000);
-                    //window.setTimeout(window.location.reload(),9000);
                 },
                 error: function(result)
                 {
@@ -338,8 +314,6 @@ width:100%!important;
         }
     });
 }
-
-
 
 function deleteTr(id,update)
 {
