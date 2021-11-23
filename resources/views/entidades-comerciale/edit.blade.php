@@ -11,7 +11,7 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">Editar Entidad Comercial</span>
+                        <span class="card-title">Editar entidad comercial ({{$entidadesComerciale->nombre}})</span>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('entidadesComerciales.update', $entidadesComerciale->id) }}"  role="form" enctype="multipart/form-data">
