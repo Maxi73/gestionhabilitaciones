@@ -9,55 +9,61 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">Ver Entidad Comercial</span>
+                            <span class="card-title">Detalles de entidad comercial</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('entidadesComerciales.index') }}"> Back</a>
+                            <a class="btn btn-primary btn-sm" href="{{ route('entidadesComerciales.index') }}"> Regresar</a>
                         </div>
                     </div>
 
                     <div class="card-body">
                         <div class="row">
-                            <div class="form-group col-3">
-                                <strong>Nombre:</strong>
-                                {{ $entidadesComerciale->nombre }}
+                            <div class="alert alert-info col-12">
+                                <strong>Nombre:</strong> {{ $entidadesComerciale->nombre }}<br>
+                                <strong>Domicilio:</strong> {{ $entidadesComerciale->domicilio }}<br>
+                                <strong>Legajo:</strong> {{ $entidadesComerciale->legajo }}<br>
+                                <strong>Expediente:</strong> {{ $entidadesComerciale->expediente }}<br>
+                                <strong>Rubro:</strong> {{ $entidadesComerciale->rubro }}<br>
+                                <strong>Tipo:</strong> {{ $entidadesComerciale->tipo }}<br>
+                                <strong>Parada:</strong> {{ $entidadesComerciale->parada }}<br>
+                                <strong>Partida:</strong> {{ $entidadesComerciale->partida }}<br>
                             </div>
-                            <div class="form-group col-3">
-                                <strong>Domicilio:</strong>
-                                {{ $entidadesComerciale->domicilio }}
-                            </div>
-                            <div class="form-group col-3">
-                                <strong>Legajo:</strong>
-                                {{ $entidadesComerciale->legajo }}
-                            </div>
-                            <div class="form-group col-3">
-                                <strong>Expediente:</strong>
-                                {{ $entidadesComerciale->expediente }}
-                            </div>
-                            <div class="form-group col-3">
-                                <strong>Rubro:</strong>
-                                {{ $entidadesComerciale->rubro }}
-                            </div>
-                            <div class="form-group col-3">
-                                <strong>Tipo:</strong>
-                                {{ $entidadesComerciale->tipo }}
-                            </div>
-                            <div class="form-group col-3">
-                                <strong>Parada:</strong>
-                                {{ $entidadesComerciale->parada }}
-                            </div>
-                            <div class="form-group col-3">
-                                <strong>Partida:</strong>
-                                {{ $entidadesComerciale->partida }}
-                            </div>
-                         
-
                         </div>
-
-
+                        @if($entidadesComerciale->tipo == "remiseria")
+                            <hr>
+                            <div class="row">
+                                <h6><label style="color:#288EC8;"><i class="fa fa-car" aria-hidden="true"></i>  Vehículos asociados<label></h6>
+                                <div class="table-responsive">
+                                    @if(count($vehiculosAsociados) > 0)
+                                        <table id="tabla_autos" class="table table-striped table-hover">
+                                            <thead class="thead">
+                                                <tr bgcolor="#288EC8">
+                                                    <th style="color:white;">Marca</th>
+                                                    <th style="color:white;">Modelo</th>
+                                                    <th style="color:white;">Dominio</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($vehiculosAsociados as $vehiculoAsociado)
+                                                    <tr id={{$vehiculoAsociado->id}}>
+                                                        <td style="color:dimgray;">{{ $vehiculoAsociado->marca }}</td>
+                                                        <td style="color:dimgray;">{{ $vehiculoAsociado->modelo }}</td>
+                                                        <td style="color:dimgray;">{{ $vehiculoAsociado->dominio }}</td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                        <a href="{{ route('entidadesComerciales.edit',$entidadesComerciale->id) }}">+Agregar</a>
+                                    @else
+                                        <h6><label style="color:orange;"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>  Sin vehículos asociados <label></h6><a href="{{ route('entidadesComerciales.edit',$entidadesComerciale->id) }}">+Agregar</a>
+                                    @endif
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
     </section>
 @endsection
+
