@@ -97,8 +97,9 @@ class EntidadesComercialeController extends Controller
     public function show($id)
     {
         $entidadesComerciale = EntidadesComerciale::find($id);
+        $vehiculosAsociados = Vehiculo::select("id","marca","modelo","dominio")->where("entidadComercial_id",$id)->get();
 
-        return view('entidades-comerciale.show', compact('entidadesComerciale'));
+        return view('entidades-comerciale.show', compact('entidadesComerciale'), compact('vehiculosAsociados'));
     }
 
     public function edit($id)
